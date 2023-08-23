@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<robot name="parallel_platform">
+
+  <!-- Base link -->
+  <link name="base">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.5"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Platform link -->
+  <link name="platform">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.5"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Leg links -->
+  <link name="leg1">
+    <visual>
+      <geometry>
+        <cylinder length="1.0" radius="0.05"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="leg2">
+    <visual>
+      <geometry>
+        <cylinder length="1.0" radius="0.05"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="leg3">
+    <visual>
+      <geometry>
+        <cylinder length="1.0" radius="0.05"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Joints connecting base to platform -->
+  <joint name="base_to_platform" type="fixed">
+    <parent link="base"/>
+    <child link="platform"/>
+    <origin xyz="0 0 0.2" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Prismatic joints connecting platform to legs -->
+  <joint name="platform_to_leg1" type="prismatic">
+    <parent link="platform"/>
+    <child link="leg1"/>
+    <origin xyz="0.5 0.5 0.5" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="0" upper="1.0" effort="1000" velocity="1"/>
+  </joint>
+
+  <joint name="platform_to_leg2" type="prismatic">
+    <parent link="platform"/>
+    <child link="leg2"/>
+    <origin xyz="-0.5 0.5 0.5" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="0" upper="1.0" effort="1000" velocity="1"/>
+  </joint>
+
+  <joint name="platform_to_leg3" type="prismatic">
+    <parent link="platform"/>
+    <child link="leg3"/>
+    <origin xyz="0 -0.5 0.5" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="0" upper="1.0" effort="1000" velocity="1"/>
+  </joint>
+
+</robot>
