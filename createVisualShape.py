@@ -3,6 +3,11 @@ import time
 import math
 import pybullet_data
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> bb41a3fc45ac7d55fc19fb45737b16eec38a25cd
 cid = p.connect(p.SHARED_MEMORY)
 if (cid < 0):
   p.connect(p.GUI)

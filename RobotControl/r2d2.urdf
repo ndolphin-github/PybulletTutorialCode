@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
+<<<<<<< HEAD
 <robot name="physics">  <!-- 시작줄, 마지막에 </robot> 들어감--> 
+=======
+<robot name="physics">
+>>>>>>> bb41a3fc45ac7d55fc19fb45737b16eec38a25cd
   <link name="base_link">
     <visual>
       <geometry>
@@ -412,7 +416,14 @@
   <joint name="tobox" type="fixed">
     <parent link="head"/>
     <child link="box"/>
+<<<<<<< HEAD
     <origin xyz="0 0.1214 0.1214"/>  
   </joint>
 
 </robot>  <!-- </robot> 들어감--> 
+=======
+    <origin xyz="0 0.1214 0.1214"/>
+  </joint>
+
+</robot>
+>>>>>>> bb41a3fc45ac7d55fc19fb45737b16eec38a25cd

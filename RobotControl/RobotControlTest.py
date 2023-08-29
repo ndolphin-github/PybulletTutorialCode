@@ -15,4 +15,8 @@ print(p.getNumJoints(RobotID))
 
 ## Base Link(-1) --- link0 -- link1 -- link 2
 ## indices =  [0 .. getNumJoints()] 
+<<<<<<< HEAD
+=======
+## 
+>>>>>>> bb41a3fc45ac7d55fc19fb45737b16eec38a25cd
 

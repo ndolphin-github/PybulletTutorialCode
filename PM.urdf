@@ -1,10 +1,15 @@
 <?xml version="1.0"?>
+<<<<<<< HEAD
 <robot name="BellowsOrigami">
+=======
+<robot name="omnidirectional_platform">
+>>>>>>> bb41a3fc45ac7d55fc19fb45737b16eec38a25cd
 
     <!-- Base link -->
     <link name="base">
         <visual>
             <geometry>
+<<<<<<< HEAD
                 <cylinder length="0.05" radius="0.5"/>
             </geometry>
         </visual>
@@ -78,5 +83,81 @@
   </joint>
 
  
+=======
+                <cylinder length="0.1" radius="0.5"/>
+            </geometry>
+        </visual>
+    </link>
+    <!-- Actuator links -->
+    <link name="actuator1">
+        <visual>
+            <geometry>
+                <cylinder length="1.0" radius="0.05"/>
+            </geometry>
+        </visual>
+    </link>
+    <link name="actuator2">
+        <visual>
+            <geometry>
+                <cylinder length="1.0" radius="0.05"/>
+            </geometry>
+        </visual>
+    </link>
+    <link name="actuator3">
+        <visual>
+            <geometry>
+                <cylinder length="1.0" radius="0.05"/>
+            </geometry>
+        </visual>
+    </link>
+    <!-- Top platform link -->
+    <link name="platform">
+        <visual>
+            <geometry>
+                <cylinder length="0.1" radius="0.5"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <!-- Joints for actuators -->
+    <joint name="base_to_actuator1" type="prismatic">
+        <parent link="base"/>
+        <child link="actuator1"/>
+        <origin xyz="0.5 0 0.1"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="0.5" upper="1.5" effort="1000.0" velocity="0.5"/>
+    </joint>
+    <joint name="base_to_actuator2" type="prismatic">
+        <parent link="base"/>
+        <child link="actuator2"/>
+        <origin xyz="-0.25 0.43 0.1"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="0.5" upper="1.5" effort="1000.0" velocity="0.5"/>
+    </joint>
+    <joint name="base_to_actuator3" type="prismatic">
+        <parent link="base"/>
+        <child link="actuator3"/>
+        <origin xyz="-0.25 -0.43 0.1"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="0.5" upper="1.5" effort="1000.0" velocity="0.5"/>
+    </joint>
+
+    <!-- Joints to connect actuators to platform -->
+    <joint name="actuator1_to_platform" type="fixed">
+        <parent link="actuator1"/>
+        <child link="platform"/>
+        <origin xyz="0 0 1.0"/>
+    </joint>
+    <joint name="actuator2_to_platform" type="fixed">
+        <parent link="actuator2"/>
+        <child link="platform"/>
+        <origin xyz="0 0 1.0"/>
+    </joint>
+    <joint name="actuator3_to_platform" type="fixed">
+        <parent link="actuator3"/>
+        <child link="platform"/>
+        <origin xyz="0 0 1.0"/>
+    </joint>
+>>>>>>> bb41a3fc45ac7d55fc19fb45737b16eec38a25cd
 
 </robot>

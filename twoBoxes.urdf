@@ -41,7 +41,10 @@
         <inertia ixx=".50" ixy="0.0" ixz="0" iyy=".5" iyz="0.0" izz=".5"/>
     </inertial>
   </link>
+<<<<<<< HEAD
   
+=======
+>>>>>>> bb41a3fc45ac7d55fc19fb45737b16eec38a25cd
 <joint name="box_link" type="fixed">
         <origin xyz="0 0 1" rpy="0 0 0"/>
        <parent link="box1"/>
