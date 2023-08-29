@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<robot name="SMv">
+
+    <material name='OrigamiBlue'>
+            <color rgba ="0 0.7 1 1"/>
+    </material>
+    <material name='OrigamiWhite'>
+            <color rgba ="1 0.9 1 1"/>
+    </material>    
+
+   <!-- Base link -->
+    <link name="base">
+        <visual>
+            <geometry>
+                <mesh filename="C:/Users/USER/Desktop/Simulation STL/SquareBase.STL" scale ="0.01 0.01 0.01"/>
+            </geometry>
+            <material name='OrigamiBlue'/>
+        </visual>
+
+        <collision>
+            <geometry>
+                <mesh filename="C:/Users/USER/Desktop/Simulation STL/SquareBase.STL" scale ="0.01 0.01 0.01"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0"/> 
+            <mass value="1"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+
+      <!-- Dummy Link for X-axis bending -->
+    <link name="dummyLinkX">
+        <inertial>
+            <mass value="0.001"/>
+            <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+        </inertial>
+    </link>
+
+    <!-- Dummy Link for Y-axis bending -->
+    <link name="dummyLinkY">
+        <inertial>
+            <mass value="0.001"/>
+            <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+        </inertial>
+    </link>
+
+     <!-- Segment1 link -->
+    <link name="segment1">
+        <visual>
+            <geometry>
+                <mesh filename="C:/Users/USER/Desktop/Simulation STL/SquareBase.STL" scale ="0.01 0.01 0.01"/>
+            </geometry>
+            <material name='OrigamiWhite'/>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="C:/Users/USER/Desktop/Simulation STL/SquareBase.STL" scale ="0.01 0.01 0.01"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin rpy="0 0 0" xyz="0 0 0"/> 
+            <mass value="1"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <!-- Bending joint around X-axis -->
+    <joint name="bend_joint_x" type="revolute">
+        <parent link="base"/>
+        <child link="dummyLinkX"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-1.57/2" upper="1.57/2" effort="100" velocity="1"/>
+        <origin xyz="0 0 0.001"/>
+    </joint>
+
+    <!-- Bending joint around Y-axis -->
+    <joint name="bend_joint_y" type="revolute">
+        <parent link="dummyLinkX"/>
+        <child link="dummyLinkY"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-1.57/2" upper="1.57/2" effort="100" velocity="1"/>
+        <origin xyz="0 0 0.001"/>
+    </joint>
+
+    <!-- Linear motion joint -->
+    <joint name="linear_joint" type="prismatic">
+        <parent link="dummyLinkY"/>
+        <child link="segment1"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="0" upper="0.3" effort="100" velocity="0.1"/>
+        <origin rpy="0 0 1.57/2" xyz="0 0 0.05"/> 
+    </joint>
+
+</robot>

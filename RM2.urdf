@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<robot name="omnidirectional_platform">
+
+    <!-- Base link -->
+    <link name="base">
+        <visual>
+            <origin rpy="0 0 0", xyz="0 0 0.1"/>
+            <geometry>
+                <cylinder length="0.05" radius="0.5"/>
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder length="0.05" radius="0.5"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="2"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <!-- Dummy Link for X-axis bending -->
+    <link name="dummyLinkX">
+        <inertial>
+            <mass value="0.001"/>
+            <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+        </inertial>
+    </link>
+
+    <!-- Dummy Link for Y-axis bending -->
+    <link name="dummyLinkY">
+        <inertial>
+            <mass value="0.001"/>
+            <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+        </inertial>
+    </link>
+
+    <!-- Segment1 link -->
+    <link name="segment1">
+        <visual>
+            <geometry>
+                <cylinder length="0.05" radius="0.5"/>
+            </geometry>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder length="0.05" radius="0.5"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="2"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+        </inertial>
+    </link>
+
+    <!-- Bending joint around X-axis -->
+    <joint name="bend_joint_x" type="revolute">
+        <parent link="base"/>
+        <child link="dummyLinkX"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-1.57" upper="1.57" effort="100" velocity="1"/>
+        <origin xyz="0 0 0.05"/>
+    </joint>
+
+    <!-- Bending joint around Y-axis -->
+    <joint name="bend_joint_y" type="revolute">
+        <parent link="dummyLinkX"/>
+        <child link="dummyLinkY"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-1.57" upper="1.57" effort="100" velocity="1"/>
+        <origin xyz="0 0 0"/>
+    </joint>
+
+    <!-- Linear motion joint -->
+    <joint name="linear_joint" type="prismatic">
+        <parent link="dummyLinkY"/>
+        <child link="segment1"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="0" upper="0.5" effort="100" velocity="0.1"/>
+        <origin xyz="0 0 0.05"/>
+    </joint>
+
+</robot>

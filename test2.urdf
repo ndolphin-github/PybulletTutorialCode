@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<robot name="parallel_platform">
+
+  <!-- Base link -->
+  <link name="base">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.5"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Platform link -->
+  <link name="platform">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.5"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Joint connecting base to platform -->
+  <joint name="base_to_platform" type="fixed">
+    <parent link="base"/>
+    <child link="platform"/>
+    <origin xyz="0 0 0.2" rpy="0 0 0"/>
+  </joint>
+
+</robot>
